@@ -7,6 +7,10 @@ import infoRouter from "./routers/info.router";
 import InfoService from "./services/info.service";
 import morganMiddleware from "./middlewares/morgan.middleware";
 import path from "path";
+import DBService from "./services/db.service";
+import cors from "cors";
+import exchangeInfoRouter from "./routers/exchange-info.router";
+import KeyPairModel from "./models/key-pair.model";
 
 export default class Server {
 
@@ -34,8 +38,18 @@ export default class Server {
 
         // Register services
         this.registerService(InfoService);
+        this.registerService(DBService);
+
+        const dbService = this.getService(DBService);
+        
+        // Register models
+        dbService.registerModel(KeyPairModel);
+
+        // Syncronize
+        dbService.connection.sync({ });
 
         // Append middlewares
+        this.app.use(cors());
         this.app.use(morganMiddleware);
         this.app.use(express.json());
         this.app.use(express.static(path.resolve("public")));
@@ -43,6 +57,7 @@ export default class Server {
 
         // Append routers
         this.app.use("/info", infoRouter(this));
+        this.app.use("/exchange-info", exchangeInfoRouter(this));
 
         // Append errors catch
         this.app.use(catchHttpErrorMiddleware);
