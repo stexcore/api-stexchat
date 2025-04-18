@@ -1,0 +1,33 @@
+{
+  "name": "api-stexchat",
+  "version": "1.0.0",
+  "description": "Api Express to manage incomming request HTTP",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "tsc",
+    "dev": "nodemon ./src/index.ts",
+    "test": "ts-node ./src/index.ts"
+  },
+  "keywords": [
+    "api",
+    "http",
+    "express",
+    "stexcore",
+    "server"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@stexcore/http-status": "^1.0.1",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "joi": "^17.13.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
