@@ -33,7 +33,7 @@ export default class DBService extends Service {
      * @param modelConstructor Model Constructor
      * @returns Model item
      */
-    public getModel<M extends ModelConstructor>(modelConstructor: M): M extends ModelConstructor<infer T, infer _T2> ? (ReturnType<M> & T) : ReturnType<M> {
+    public getModel<M extends ModelConstructor>(modelConstructor: M): ReturnType<M> {
         // Model item
         const modelItem = this.models.find((m) => m.modelConstructor === modelConstructor);
 
@@ -41,7 +41,7 @@ export default class DBService extends Service {
         if(!modelItem) throw new Error("Model not found!");
 
         // Model item
-        return modelItem.modelInstance as M extends ModelConstructor<infer T, infer _T2> ? (ReturnType<M> & T) : ReturnType<M>;
+        return modelItem.modelInstance as ReturnType<M>;
     }
 
     public registerModel(modelConstructor: ModelConstructor) {

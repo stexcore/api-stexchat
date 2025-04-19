@@ -10,6 +10,7 @@ import { internalServerError } from "@stexcore/http-status";
  */
 const catchGlobalErrorMiddleware: ErrorRequestHandler = (_err, _req, res, next) => {
     try {
+        console.error(_err);
         res.status(500).json(internalServerError());
     }
     catch(err) {

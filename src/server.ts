@@ -11,6 +11,7 @@ import DBService from "./services/db.service";
 import cors from "cors";
 import exchangeInfoRouter from "./routers/exchange-info.router";
 import KeyPairModel from "./models/key-pair.model";
+import StexcoreMiddleware from "./middlewares/stexcore.middleware";
 
 export default class Server {
 
@@ -50,6 +51,7 @@ export default class Server {
 
         // Append middlewares
         this.app.use(cors());
+        this.app.use(StexcoreMiddleware(this));
         this.app.use(morganMiddleware);
         this.app.use(express.json());
         this.app.use(express.static(path.resolve("public")));

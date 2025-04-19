@@ -4,7 +4,7 @@ type ModelConstructor<
     TModelAttributes extends {} = any, 
     TCreationAttributes extends {} = TModelAttributes
 > = {
-    (sequelize: Sequelize): ModelStatic<Model<TModelAttributes, TCreationAttributes>>
+    (sequelize: Sequelize): ModelStatic<Model<TModelAttributes, TCreationAttributes> & TModelAttributes>
 }
 
 export default ModelConstructor;

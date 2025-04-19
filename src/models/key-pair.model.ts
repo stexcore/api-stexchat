@@ -35,7 +35,7 @@ interface IKeyPair {
 const KeyPairModel: ModelConstructor<IKeyPair, Omit<IKeyPair, "id">> = (sequelize) => {
 
     // Define Structure model
-    return sequelize.define<Model<IKeyPair>>("key_pair", {
+    return sequelize.define<Model<IKeyPair> & IKeyPair>("key_pair", {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
